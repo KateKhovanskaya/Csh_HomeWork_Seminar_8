@@ -1,11 +1,17 @@
 ﻿// Задача 54: Задайте двумерный массив. Напишите программу, которая упорядочит по убыванию
 //элементы каждой строки двумерного массива
-int[,] arr54= GetArray(4,3,0,10);
-PrintArray(arr54);
+//int[,] arr54= GetArray(3,4,0,10);
+int[,] arr1= GetArray(2,2,0,10);
+int[,] arr2= GetArray(2,2,0,10);
+PrintArray(arr1);
 Console.WriteLine();
+PrintArray(arr2);
+Console.WriteLine();
+int[,] matricesProduct=MatricesProduct(arr1, arr2);
+PrintArray(matricesProduct);
 //SortArr(arr54);
 //PrintArray(arr54);
-Console.WriteLine($"Минимальная сумма элементов в строке: {FindMinRow(arr54)}");
+//Console.WriteLine($"Минимальная сумма элементов в строке: {FindMinRow(arr54)}");
 
 //-------Методы----------
 int[,] GetArray(int m, int n, int minValue, int maxValue){
@@ -63,4 +69,18 @@ int FindMinRow(int[,] arr){
         }
     }
     return minRow+1;
+}
+
+//Задача 58: Задайте две матрицы. Напишите программу, которая будет находить
+//произведение двух матриц.
+int[,] MatricesProduct(int[,] arr1, int[,] arr2){
+    int[,] resultArr= new int[arr1.GetLength(0), arr1.GetLength(1)];
+    for(int i=0; i<resultArr.GetLength(0); i++){
+        for(int j=0; j<resultArr.GetLength(1); j++){
+            for(int k=0; k<resultArr.GetLength(0); k++){
+                resultArr[i,j]+=arr1[i,k]*arr2[k,j];
+            }
+        }
+    }
+    return resultArr;
 }
