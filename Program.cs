@@ -12,8 +12,10 @@
 // PrintArray(matricesProduct);
 //PrintArray(arr54);
 //Console.WriteLine($"Минимальная сумма элементов в строке: {FindMinRow(arr54)}");
-int[,] spiral=Spiral(6,6);
-PrintArray1(spiral);
+// int[,] spiral=Spiral(6,6);
+// PrintArray1(spiral);
+int[,,] arr3D60 = GetArray3D(2,2,2);
+PrintArray3D(arr3D60);
 //-------Методы----------
 int[,] GetArray(int m, int n, int minValue, int maxValue){
     int[,] result = new int[m,n];
@@ -143,4 +145,46 @@ int[,] Spiral(int row, int column){
         if(count>row*column) return rezult;
     }
     return rezult;
+}
+
+//Задача 60. ...Сформируйте трёхмерный массив из неповторяющихся двузначных чисел.
+//Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого
+//элемента.
+
+bool IsNumberInArr(int number, int[,,] arr3D){
+    for(int i=0; i< arr3D.GetLength(0); i++){
+        for(int j=0; j<arr3D.GetLength(1); j++){
+            for(int k=0; k<arr3D.GetLength(1); k++){
+                if(arr3D[i,j,k]==number) return true;
+            }
+        }
+    }
+    return false;
+}
+
+int[,,] GetArray3D(int m, int n, int k){
+    int[,,] rezultArr=new int[m,n,k];
+    for(int i=0; i< rezultArr.GetLength(0); i++){
+        for(int j=0; j<rezultArr.GetLength(1); j++){
+            for(int l=0; l<rezultArr.GetLength(2); l++){
+                int nextNum=new Random().Next(10, 100);
+                while(IsNumberInArr(nextNum, rezultArr)){
+                    nextNum=new Random().Next(10, 100);
+                }
+                rezultArr[i,j,l]=nextNum;
+            }
+        }
+    }
+    return rezultArr;
+}
+
+void PrintArray3D(int[,,] array3D){
+    for(int i=0; i< array3D.GetLength(0); i++){
+        for(int j=0; j<array3D.GetLength(1); j++){
+            for(int k=0; k<array3D.GetLength(2); k++){
+                Console.Write($"{array3D[i,j,k]} ({i}, {j}, {k}) ");
+            }
+            Console.WriteLine();
+        }
+    }
 }
