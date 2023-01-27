@@ -1,18 +1,19 @@
 ﻿// Задача 54: Задайте двумерный массив. Напишите программу, которая упорядочит по убыванию
 //элементы каждой строки двумерного массива
 //int[,] arr54= GetArray(3,4,0,10);
-int[,] arr1= GetArray(2,2,0,10);
-int[,] arr2= GetArray(2,2,0,10);
-PrintArray(arr1);
-Console.WriteLine();
-PrintArray(arr2);
-Console.WriteLine();
-int[,] matricesProduct=MatricesProduct(arr1, arr2);
-PrintArray(matricesProduct);
-//SortArr(arr54);
+// 
+//SortArr(arr54);int[,] arr1= GetArray(2,2,0,10);
+// int[,] arr2= GetArray(2,2,0,10);
+// PrintArray(arr1);
+// Console.WriteLine();
+// PrintArray(arr2);
+// Console.WriteLine();
+// int[,] matricesProduct=MatricesProduct(arr1, arr2);
+// PrintArray(matricesProduct);
 //PrintArray(arr54);
 //Console.WriteLine($"Минимальная сумма элементов в строке: {FindMinRow(arr54)}");
-
+int[,] spiral=Spiral(6,6);
+PrintArray1(spiral);
 //-------Методы----------
 int[,] GetArray(int m, int n, int minValue, int maxValue){
     int[,] result = new int[m,n];
@@ -28,6 +29,15 @@ void PrintArray(int[,] array){
     for(int i = 0; i < array.GetLength(0); i++){
         for(int j = 0; j < array.GetLength(1); j++){
             Console.Write($"{array[i,j]} ");
+        }
+        Console.WriteLine();
+    }
+}
+
+void PrintArray1(int[,] array){
+    for(int i = 0; i < array.GetLength(0); i++){
+        for(int j = 0; j < array.GetLength(1); j++){
+            Console.Write(string.Format("{0:d2}",array[i,j])+" ");
         }
         Console.WriteLine();
     }
@@ -83,4 +93,54 @@ int[,] MatricesProduct(int[,] arr1, int[,] arr2){
         }
     }
     return resultArr;
+}
+
+//Задача 62. Напишите программу, которая заполнит спирально массив 4 на 4.
+int[,] Spiral(int row, int column){
+    int[,] rezult=new int[row, column];
+    int napravlenie=1;
+    int rowStart=0;
+    int rowEnd=row-1;
+    int columnStart=0;
+    int columnEnd=column-1;
+    int count=1;
+    while(count<= row*column){
+        if(napravlenie==1){
+            for(int j=columnStart; j<=columnEnd; j++){
+                rezult[rowStart, j]=count;
+                count++;
+            }
+            rowStart+=1;
+            napravlenie=2;
+        }
+        if(count>row*column) return rezult;
+        if(napravlenie==2){
+            for(int i=rowStart; i<=rowEnd; i++){
+                rezult[i,columnEnd]=count;
+                count++;
+            }
+            columnEnd-=1;
+            napravlenie=3;
+        }
+        if(count>row*column) return rezult;
+        if(napravlenie==3){
+            for(int j=columnEnd; j>=columnStart; j--){
+                rezult[rowEnd,j]=count;
+                count++;
+            }
+            rowEnd-=1;
+            napravlenie=4;
+        }
+        if(count>row*column) return rezult;
+        if(napravlenie==4){
+            for(int i=rowEnd; i>=rowStart; i--){
+                rezult[i, columnStart]=count;
+                count++;
+            }
+            columnStart+=1;
+            napravlenie=1;
+        }
+        if(count>row*column) return rezult;
+    }
+    return rezult;
 }
