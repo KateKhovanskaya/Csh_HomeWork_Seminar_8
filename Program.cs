@@ -12,29 +12,29 @@
 // PrintArray(matricesProduct);
 //PrintArray(arr54);
 //Console.WriteLine($"Минимальная сумма элементов в строке: {FindMinRow(arr54)}");
-// int[,] spiral=Spiral(6,6);
-// PrintArray1(spiral);
-int[,,] arr3D60 = GetArray3D(2,2,2);
-PrintArray3D(arr3D60);
+int[,] spiral=Spiral(3,8);
+PrintArray1(spiral);
+// int[,,] arr3D60 = GetArray3D(2,2,2);
+// PrintArray3D(arr3D60);
 //-------Методы----------
-int[,] GetArray(int m, int n, int minValue, int maxValue){
-    int[,] result = new int[m,n];
-    for(int i = 0; i < m; i++){
-        for(int j = 0; j < n; j++){
-            result[i,j] = new Random().Next(minValue, maxValue + 1);
-        }
-    }
-    return result;
-}
+// int[,] GetArray(int m, int n, int minValue, int maxValue){
+//     int[,] result = new int[m,n];
+//     for(int i = 0; i < m; i++){
+//         for(int j = 0; j < n; j++){
+//             result[i,j] = new Random().Next(minValue, maxValue + 1);
+//         }
+//     }
+//     return result;
+// }
 
-void PrintArray(int[,] array){
-    for(int i = 0; i < array.GetLength(0); i++){
-        for(int j = 0; j < array.GetLength(1); j++){
-            Console.Write($"{array[i,j]} ");
-        }
-        Console.WriteLine();
-    }
-}
+// void PrintArray(int[,] array){
+//     for(int i = 0; i < array.GetLength(0); i++){
+//         for(int j = 0; j < array.GetLength(1); j++){
+//             Console.Write($"{array[i,j]} ");
+//         }
+//         Console.WriteLine();
+//     }
+// }
 
 void PrintArray1(int[,] array){
     for(int i = 0; i < array.GetLength(0); i++){
@@ -45,66 +45,67 @@ void PrintArray1(int[,] array){
     }
 }
 
-void SortArr(int[,] arr){
-    for(int i=0; i<arr.GetLength(0); i++){
-        int sortSize=arr.GetLength(1)-1;
-        while (sortSize>=1){
-            for(int j=0; j<sortSize;j++){
-                if(arr[i,j+1]>arr[i,j]){
-                int temp=arr[i,j];
-                    arr[i,j]=arr[i,j+1];
-                    arr[i,j+1]=temp;
-                }
-            }
-            sortSize--;
-        }
-    }
-}
+// void SortArr(int[,] arr){
+//     for(int i=0; i<arr.GetLength(0); i++){
+//         int sortSize=arr.GetLength(1)-1;
+//         while (sortSize>=1){
+//             for(int j=0; j<sortSize;j++){
+//                 if(arr[i,j+1]>arr[i,j]){
+//                 int temp=arr[i,j];
+//                     arr[i,j]=arr[i,j+1];
+//                     arr[i,j+1]=temp;
+//                 }
+//             }
+//             sortSize--;
+//         }
+//     }
+// }
 
-//Задача 56: Задайте прямоугольный двумерный массив. Напишите программу,
-//которая будет находить строку с наименьшей суммой элементов.
+// //Задача 56: Задайте прямоугольный двумерный массив. Напишите программу,
+// //которая будет находить строку с наименьшей суммой элементов.
 
-int FindMinRow(int[,] arr){
-    int minRow=0;
-    int min=0;
-    for(int j=0; j<arr.GetLength(1); j++){
-        min+=arr[0,j];
-    }
-    for(int i=1; i<arr.GetLength(0); i++){
-        int sum=0;
-        for(int j=0; j<arr.GetLength(1); j++){
-            sum+= arr[i,j];
-        }
-        if (sum<min){
-            min=sum;
-            minRow=i;
-        }
-    }
-    return minRow+1;
-}
+// int FindMinRow(int[,] arr){
+//     int minRow=0;
+//     int min=0;
+//     for(int j=0; j<arr.GetLength(1); j++){
+//         min+=arr[0,j];
+//     }
+//     for(int i=1; i<arr.GetLength(0); i++){
+//         int sum=0;
+//         for(int j=0; j<arr.GetLength(1); j++){
+//             sum+= arr[i,j];
+//         }
+//         if (sum<min){
+//             min=sum;
+//             minRow=i;
+//         }
+//     }
+//     return minRow+1;
+// }
 
-//Задача 58: Задайте две матрицы. Напишите программу, которая будет находить
-//произведение двух матриц.
-int[,] MatricesProduct(int[,] arr1, int[,] arr2){
-    int[,] resultArr= new int[arr1.GetLength(0), arr1.GetLength(1)];
-    for(int i=0; i<resultArr.GetLength(0); i++){
-        for(int j=0; j<resultArr.GetLength(1); j++){
-            for(int k=0; k<resultArr.GetLength(0); k++){
-                resultArr[i,j]+=arr1[i,k]*arr2[k,j];
-            }
-        }
-    }
-    return resultArr;
-}
+// //Задача 58: Задайте две матрицы. Напишите программу, которая будет находить
+// //произведение двух матриц.
+// int[,] MatricesProduct(int[,] arr1, int[,] arr2){
+//     int[,] resultArr= new int[arr1.GetLength(0), arr1.GetLength(1)];
+//     for(int i=0; i<resultArr.GetLength(0); i++){
+//         for(int j=0; j<resultArr.GetLength(1); j++){
+//             for(int k=0; k<resultArr.GetLength(0); k++){
+//                 resultArr[i,j]+=arr1[i,k]*arr2[k,j];
+//             }
+//         }
+//     }
+//     return resultArr;
+// }
 
 //Задача 62. Напишите программу, которая заполнит спирально массив 4 на 4.
 int[,] Spiral(int row, int column){
     int[,] rezult=new int[row, column];
-    int napravlenie=1;
-    int rowStart=0;
-    int rowEnd=row-1;
-    int columnStart=0;
-    int columnEnd=column-1;
+    int napravlenie=1;//1 - слева направо, 2 - сверху вниз, 3- справа налево,
+                      //4 - снизу вверх
+    int rowStart=0;// индекс стартовой строки, с которой заполняем массив
+    int rowEnd=row-1;// индекс конечной строки, включительно, до которой заполняем массив
+    int columnStart=0;//индекс стартового столбца, с которой заполняем массив
+    int columnEnd=column-1;//индекс конечного столбца, вкл-но, до которого заполняем массив
     int count=1;
     while(count<= row*column){
         if(napravlenie==1){
@@ -151,40 +152,40 @@ int[,] Spiral(int row, int column){
 //Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого
 //элемента.
 
-bool IsNumberInArr(int number, int[,,] arr3D){
-    for(int i=0; i< arr3D.GetLength(0); i++){
-        for(int j=0; j<arr3D.GetLength(1); j++){
-            for(int k=0; k<arr3D.GetLength(1); k++){
-                if(arr3D[i,j,k]==number) return true;
-            }
-        }
-    }
-    return false;
-}
+// bool IsNumberInArr(int number, int[,,] arr3D){
+//     for(int i=0; i< arr3D.GetLength(0); i++){
+//         for(int j=0; j<arr3D.GetLength(1); j++){
+//             for(int k=0; k<arr3D.GetLength(1); k++){
+//                 if(arr3D[i,j,k]==number) return true;
+//             }
+//         }
+//     }
+//     return false;
+// }
 
-int[,,] GetArray3D(int m, int n, int k){
-    int[,,] rezultArr=new int[m,n,k];
-    for(int i=0; i< rezultArr.GetLength(0); i++){
-        for(int j=0; j<rezultArr.GetLength(1); j++){
-            for(int l=0; l<rezultArr.GetLength(2); l++){
-                int nextNum=new Random().Next(10, 100);
-                while(IsNumberInArr(nextNum, rezultArr)){
-                    nextNum=new Random().Next(10, 100);
-                }
-                rezultArr[i,j,l]=nextNum;
-            }
-        }
-    }
-    return rezultArr;
-}
+// int[,,] GetArray3D(int m, int n, int k){
+//     int[,,] rezultArr=new int[m,n,k];
+//     for(int i=0; i< rezultArr.GetLength(0); i++){
+//         for(int j=0; j<rezultArr.GetLength(1); j++){
+//             for(int l=0; l<rezultArr.GetLength(2); l++){
+//                 int nextNum=new Random().Next(10, 100);
+//                 while(IsNumberInArr(nextNum, rezultArr)){
+//                     nextNum=new Random().Next(10, 100);
+//                 }
+//                 rezultArr[i,j,l]=nextNum;
+//             }
+//         }
+//     }
+//     return rezultArr;
+// }
 
-void PrintArray3D(int[,,] array3D){
-    for(int i=0; i< array3D.GetLength(0); i++){
-        for(int j=0; j<array3D.GetLength(1); j++){
-            for(int k=0; k<array3D.GetLength(2); k++){
-                Console.Write($"{array3D[i,j,k]} ({i}, {j}, {k}) ");
-            }
-            Console.WriteLine();
-        }
-    }
-}
+// void PrintArray3D(int[,,] array3D){
+//     for(int i=0; i< array3D.GetLength(0); i++){
+//         for(int j=0; j<array3D.GetLength(1); j++){
+//             for(int k=0; k<array3D.GetLength(2); k++){
+//                 Console.Write($"{array3D[i,j,k]} ({i}, {j}, {k}) ");
+//             }
+//             Console.WriteLine();
+//         }
+//     }
+// }
